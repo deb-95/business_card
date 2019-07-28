@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RotatingContainer extends StatelessWidget {
   const RotatingContainer({
@@ -57,9 +58,12 @@ class MyBCCard extends StatelessWidget {
               text: PHONE_NUMBER,
               icon: Icons.phone,
             ),
-            MyBCRow(
-              text: GITHUB_PROFILE,
-              icon: FontAwesomeIcons.github,
+            InkWell(
+              onTap: () {launch(GITHUB_PROFILE);},
+              child: MyBCRow(
+                text: GITHUB_PROFILE,
+                icon: FontAwesomeIcons.github,
+              ),
             ),
           ],
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

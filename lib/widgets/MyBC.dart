@@ -45,7 +45,7 @@ class _MyBCState extends State<MyBC> with SingleTickerProviderStateMixin {
             ),
           );
         },
-        child: new RotatingContainer(controller: _controller),
+        child: RotatingContainer(controller: _controller),
       ),
     );
   }
