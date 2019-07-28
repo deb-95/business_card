@@ -26,7 +26,9 @@ class MyBCCard extends StatelessWidget {
               icon: Icons.phone,
             ),
             InkWell(
-              onTap: () {launch(GITHUB_PROFILE);},
+              onTap: () {
+                launch(GITHUB_PROFILE);
+              },
               child: MyBCRow(
                 text: GITHUB_PROFILE,
                 icon: FontAwesomeIcons.github,
