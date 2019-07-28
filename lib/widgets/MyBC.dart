@@ -34,8 +34,9 @@ class _MyBCState extends State<MyBC> with SingleTickerProviderStateMixin {
     return Center(
       child: InkWell(
         onTap: () {
-          // animation
-          _controller.forward();
+          _controller.forward()
+          // ??? works but not sure
+          ..whenComplete(() => _controller.reset());
         },
         onDoubleTap: () {
           Navigator.of(context).push(
