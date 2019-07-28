@@ -1,4 +1,5 @@
 import 'package:business_card/widgets/MyBiography.dart';
+import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -8,15 +9,34 @@ class MyBC extends StatefulWidget {
   _MyBCState createState() => _MyBCState();
 }
 
-class _MyBCState extends State<MyBC> {
+class _MyBCState extends State<MyBC> with SingleTickerProviderStateMixin {
+//  Animation<double> animation;
+  AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+//    final tween = Tween<double>(
+//      begin: 0,
+//      end: 300,
+//    );
+//    animation = tween.animate(controller)
+//      ..addListener(() {
+//        setState(() {});
+//      });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: InkWell(
         onTap: () {
           // animation
-          print("tapped!");
-
+          _controller.forward();
         },
         onDoubleTap: () {
           Navigator.of(context).push(
@@ -25,21 +45,31 @@ class _MyBCState extends State<MyBC> {
             ),
           );
         },
-        child: AnimatedContainer(
-          height: 300,
-          width: 300,
-          margin: EdgeInsets.symmetric(horizontal: 5.0),
-          padding: EdgeInsets.all(5),
-          child: MyBCCard(),
-          decoration: BoxDecoration(
-            color: Colors.indigo,
-            borderRadius: BorderRadius.circular(10.0),
+        child: RotationTransition(
+          turns: Tween(
+            begin: 0.0,
+            end: 1.0,
+          ).animate(_controller),
+          child: Container(
+            height: 300,
+            width: 300,
+            margin: EdgeInsets.symmetric(horizontal: 5.0),
+            padding: EdgeInsets.all(5),
+            child: MyBCCard(),
+            decoration: BoxDecoration(
+              color: Colors.indigo,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
           ),
-          duration: Duration(seconds: 1),
-          curve: Curves.decelerate,
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
 
@@ -59,7 +89,7 @@ class MyBCCard extends StatelessWidget {
           children: <Widget>[
             MyBCRow(
               text: NAME,
-              icon: Icons.pregnant_woman,
+              icon: Icons.person,
             ),
             MyBCRow(
               text: PHONE_NUMBER,
