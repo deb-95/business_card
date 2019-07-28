@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:business_card/widgets/MyBC.dart';
+
+import 'widgets/MyBC.dart';
 
 void main() => runApp(MyApp());
 

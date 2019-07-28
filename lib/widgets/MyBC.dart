@@ -1,7 +1,8 @@
-import 'package:business_card/widgets/MyBiography.dart';
-import 'package:business_card/widgets/RotatingContainer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'MyBiography.dart';
+import 'RotatingContainer.dart';
 
 class MyBC extends StatefulWidget {
   @override
@@ -35,8 +36,8 @@ class _MyBCState extends State<MyBC> with SingleTickerProviderStateMixin {
       child: InkWell(
         onTap: () {
           _controller.forward()
-          // ??? works but not sure
-          ..whenComplete(() => _controller.reset());
+            // ??? works but not sure
+            ..whenComplete(() => _controller.reset());
         },
         onDoubleTap: () {
           Navigator.of(context).push(
